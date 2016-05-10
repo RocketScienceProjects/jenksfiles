@@ -21,10 +21,4 @@ node('windows') {
           bat "del ${thingie}.zip"
          }
 
-
-//   bat '''echo "Extracting the artifact $ProjectPath"
-  // 7z x webcontent.zip -o\\\\WIN-RATABIECTJ2\\App -y
-   //echo "Deleting the zip file"
-   //del webcontent.zip
-   // echo "Deleted the zip file $ProjectPath"'''
 }
