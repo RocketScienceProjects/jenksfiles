@@ -4,21 +4,22 @@ node('windows') {
    //7zip the webcontent folder
    stage name: 'Zipping', concurrency: 1
    env.PATH="C:\\Program Files\\7-Zip;C:\\Program Files\\Git\\usr\\bin;${env.PATH}"
-
+   bat 'rmdir %cd%\\artifacts'
+   bat 'mkdir %cd%\\artifacts'
     def list = ["webcontent", "src"]
       for (int i = 0; i < list.size(); i++) {
         def thingie = list.get(i);
-          bat "7z a ${thingie}.zip ${thingie}"
+          bat "7z a %cd%\\artifacts\\${thingie}.zip ${thingie}"
           }
 
 
    //extract the zip file
    stage name: 'ExtractingAndDeleting', concurrency: 1
-   def list = ["webcontent", "src"]
+
      for (int i = 0; i < list.size(); i++) {
        def thingie = list.get(i);
-         bat "7z x ${thingie}.zip -o\\\\WIN-RATABIECTJ2\\App -y"
-          bat "del ${thingie}.zip"
+         bat "7z x %cd%\\artifacts\\${thingie}.zip -o\\\\WIN-RATABIECTJ2\\App -y"
+          //bat "del %cd%\\artifacts\\${thingie}.zip"
          }
 
 }
